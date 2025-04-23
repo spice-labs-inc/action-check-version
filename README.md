@@ -10,7 +10,7 @@ This GitHub Action ensures that the Git tag (e.g. `v1.2.3`) matches the version 
         uses: actions/checkout@v4
 
       - name: Check Cargo version matches tag
-        uses: spice-labs-inc/actions/cargo_version_check@main
+        uses: spice-labs-inc/cargo_version_check@main
 ```
 #### Jobs Section in Workflow for Publishing Images
 ```yaml
@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check Cargo version matches tag
-        uses: spice-labs-inc/actions/cargo_version_check@main
+        uses: spice-labs-inc/cargo_version_check@main
 
   push_to_registry:
     name: Push Docker image to Docker Hub and GHCR
