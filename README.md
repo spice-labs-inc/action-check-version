@@ -6,11 +6,10 @@ This GitHub Action ensures that the Git tag (e.g. `v1.2.3`) matches the version 
 
 #### Usage
 ```yaml
-      - name: Checkout repository
-        uses: actions/checkout@v4
+jobs:
+  check-version:
+    uses: spice-labs-inc/action-check-version/.github/workflows/check-version.yml@main
 
-      - name: Check Cargo version matches tag
-        uses: spice-labs-inc/action-check-version@main
 ```
 #### Jobs Section in Workflow for Publishing Images
 ```yaml
