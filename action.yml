@@ -1,23 +1,31 @@
 name: Check Cargo Version Matches Tag
 description: Fails if the GitHub Release tag and the Cargo.toml version number mismatch
 author: spice-labs-inc
+
 runs:
   using: "composite"
   steps:
     - name: Compare Git tag with Cargo.toml version
       shell: bash
       run: |
+        set -euo pipefail
+
+        echo "🔍 Extracting version from Cargo.toml"
         cargo_version=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[0].version')
+        echo "📦 Cargo.toml version: $cargo_version"
+
+        echo "🔍 Extracting version from Git tag"
         tag_version_ref="${GITHUB_REF##*/}"
         tag_version=${tag_version_ref#v}
-
-        echo "📦 Cargo.toml version: $cargo_version"
         echo "🏷️  Git tag version:    $tag_version_ref"
 
         if [ "$tag_version" != "$cargo_version" ]; then
           echo "❌ Tag version '$tag_version_ref' does not match Cargo.toml version '$cargo_version'" 1>&2
           exit 1
         fi
+
+        echo "✅ Version match confirmed: $tag_version"
+
 branding:
   icon: tag
   color: black
