@@ -1,4 +1,4 @@
-### cargo-version-check
+# action-check-version
 Checks GitHib Release tag matches Cargo.toml version number and fails if they mismatch
 
 #### Check Cargo Version Matches Tag
@@ -10,7 +10,7 @@ This GitHub Action ensures that the Git tag (e.g. `v1.2.3`) matches the version 
         uses: actions/checkout@v4
 
       - name: Check Cargo version matches tag
-        uses: spice-labs-inc/cargo_version_check@main
+        uses: spice-labs-inc/action-check-version@main
 ```
 #### Jobs Section in Workflow for Publishing Images
 ```yaml
@@ -24,11 +24,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check Cargo version matches tag
-        uses: spice-labs-inc/cargo_version_check@main
+        uses: spice-labs-inc/action-check-version@main
 
   push_to_registry:
     name: Push Docker image to Docker Hub and GHCR
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: check-version
 ```
 Rest of workflow ...
