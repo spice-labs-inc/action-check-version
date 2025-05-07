@@ -6,29 +6,7 @@ This GitHub Action ensures that the Git tag (e.g. `v1.2.3`) matches the version 
 
 #### Usage
 ```yaml
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Check Cargo version matches tag
-        uses: spice-labs-inc/cargo_version_check@main
-```
-#### Jobs Section in Workflow for Publishing Images
-```yaml
-jobs:   
+jobs:
   check-version:
-    if: startsWith(github.ref, 'refs/tags/v')  # Run only on tag pushes
-    name: Ensure GitHub Release & Cargo.toml Version Numbers Match
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Check Cargo version matches tag
-        uses: spice-labs-inc/cargo_version_check@main
-
-  push_to_registry:
-    name: Push Docker image to Docker Hub and GHCR
-    runs-on: ubuntu-latest
-    needs: check-version
+    uses: spice-labs-inc/action-check-version/.github/workflows/check-version.yml@main
 ```
-Rest of workflow ...
