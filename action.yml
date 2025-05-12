@@ -17,7 +17,7 @@ runs:
         echo "🔍 Extracting version from Git tag"
         tag_version_ref="${GITHUB_REF##*/}"
         tag_version=${tag_version_ref#v}
-        echo "🏷️  Git tag version:    $tag_version_ref"
+        echo "🏷️   Git tag version:    $tag_version_ref"
 
         if [ "$tag_version" != "$cargo_version" ]; then
           echo "❌ Tag version '$tag_version_ref' does not match Cargo.toml version '$cargo_version'" 1>&2
@@ -28,4 +28,5 @@ runs:
 
 branding:
   icon: tag
-  color: black
+  color: red
+
