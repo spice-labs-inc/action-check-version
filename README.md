@@ -6,13 +6,16 @@ This GitHub Action ensures that the version in your Rust project's `Cargo.toml` 
 ```yaml
 jobs:
   check-version:
+    name: Ensure Tag Matches Cargo.toml
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-24.04
     steps:
-      - name: Check out code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Check Cargo Version Matches Git Tag
+      - name: Check Cargo Version Matches Tag
         uses: spice-labs-inc/action-check-version@main
+
 ```
 This action expects your workflow to be triggered by a Git tag in the format vX.Y.Z (e.g. v1.2.3). It will:
  - Parse the version from the first package in Cargo.toml
