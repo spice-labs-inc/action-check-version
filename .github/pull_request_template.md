@@ -1,5 +1,5 @@
 ### Summary
-Breifly explain changes and the reason for
+Briefly explain changes and the reason for them.
 
 ### Changes
 - Key change 1
